@@ -8,7 +8,13 @@ const options = {
   }
 };
 
-export const fetchMovies = async () => {
+export const fetchTrendingMovies = async () => {
     const response = await axios.get("/trending/movie/day?language=en-US", options)
-    console.log(response);
+    return response.data.results;
+}
+
+export const fetchMovieDetails = async (movieId) => {
+  const response = await axios.get(`/movie/${movieId}`, options)
+  // return response.data.results;
+  console.log(response.data.results);
 }
