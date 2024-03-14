@@ -1,6 +1,11 @@
 .nav {
 display: flex;
 gap: 8px;
+border: 1px solid gray;
+padding-left: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .link {

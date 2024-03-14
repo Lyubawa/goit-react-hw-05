@@ -3,7 +3,9 @@ import Navigation from "./Navigation/Navigation";
 import NotFoundPage from "../pages/NotFoundPage";
 import HomePage from "../pages/HomePage";
 import MoviesPage from "../pages/MoviesPage";
-import MovieDetailsPage from "../pages/MovieDetailsPage";
+import MovieDetailsPage from "../pages/MovieDetailsPage/MovieDetailsPage";
+import MovieCast from "./MovieCast/MovieCast";
+import MovieReviews from "./MovieReviews/MovieReviews";
 // import axios from 'axios';
 // import { useEffect } from "react";
 
@@ -22,7 +24,10 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/movies" element={<MoviesPage />} />
-                <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+                <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+                    <Route path="/movies/:movieId/cast" element={<MovieCast />} />
+                    <Route path="/movies/:movieId/reviews" element={<MovieReviews />} />
+                </Route>
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </div>
