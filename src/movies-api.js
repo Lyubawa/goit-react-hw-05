@@ -21,11 +21,14 @@ export const fetchMovieDetails = async (movieId) => {
 export const fetchCast = async (movieId) => {
   const response = await axios.get(`/movie/${movieId}/credits`, options)
   return response.data.cast;
-  // console.log(response.data.cast);
 }
 
 export const fetchReviews = async (movieId) => {
   const response = await axios.get(`/movie/${movieId}/reviews`, options)
-  // return response.data;
-  console.log(response.data.results);
+  return response.data.results;
+}
+
+export const fetchSearchMovies = async (query) => {
+  const response = await axios.get(`/search/movie?query=${query}}`, options)
+  return response.data.results;
 }
