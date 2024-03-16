@@ -27,7 +27,7 @@ export default function MoviesPage() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const inputValue = event.target.elements.query.value;
+    const inputValue = event.target.query.value.trim();
     changeFilter(inputValue);
   };
 
@@ -40,8 +40,9 @@ export default function MoviesPage() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          name="query"
           placeholder="enter title of movie"
-          defaultValue={moviesFilter}
+          // defaultValue={moviesFilter}
           // value={changeFilter}
         />
         <button type="submit">Search</button>
