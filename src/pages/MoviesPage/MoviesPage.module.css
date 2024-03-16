@@ -1,0 +1,18 @@
+.form {
+  margin-top: 10px;
+}
+
+.input {
+  margin-right: 10px;
+  width: 300px;
+  font-size: 16px;
+}
+
+.btn {
+  font-size: 16px;
+  cursor: pointer;
+  background-color: aquamarine;
+  border: 1px solid gray;
+  border-radius: 4px;
+  height: 24px;
+}
