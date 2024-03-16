@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { fetchSearchMovies } from '../movies-api';
 import { useSearchParams } from 'react-router-dom';
-// import SearchMovies from "../components/SearchMovies/SearchMovies";
+// import SearchMovies from '../components/SearchMovies/SearchMovies';
+import MovieList from '../components/MovieList/MovieList';
 
 export default function MoviesPage() {
-  const [searchMovies, setSearchMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [params, setParams] = useSearchParams();
 
   const moviesFilter = params.get('query') ?? '';
-  const changeMovieFilter = newFilter => {
+
+  const changeFilter = newFilter => {
     params.set('query', newFilter);
     setParams(params);
   };
@@ -17,7 +19,7 @@ export default function MoviesPage() {
     async function getData() {
       try {
         const data = await fetchSearchMovies(moviesFilter);
-        setSearchMovies(data);
+        setMovies(data);
       } catch (error) {}
     }
     getData();
@@ -25,23 +27,27 @@ export default function MoviesPage() {
 
   const handleSubmit = event => {
     event.preventDefault();
-
     const inputValue = event.target.elements.query.value;
-    changeMovieFilter(inputValue);
-    setSearchMovies(fetchSearchMovies(inputValue));
+    changeFilter(inputValue);
   };
+
+  const filterMovies = movies.filter(movie =>
+    movie.query.toLowerCase().includes(moviesFilter.toLocaleLowerCase())
+  );
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="query"
-          value={moviesFilter}
-          onChange={e => changeMovieFilter(e.target.value)}
+          placeholder="enter title of movie"
+          defaultValue={moviesFilter}
+          // value={changeFilter}
         />
         <button type="submit">Search</button>
       </form>
+      {/* <SearchMovies /> */}
+      <MovieList movies={filterMovies} />
     </div>
   );
 }
